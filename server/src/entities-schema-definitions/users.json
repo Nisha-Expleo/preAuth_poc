@@ -1,0 +1,9 @@
+{
+    "_DM_6fii80bkk": {
+        "id": "_DM_6fii80bkk",
+        "name": "users",
+        "dbType": "dbModel",
+        "dbConfigId": "sd_dm4nlxZgQKbuz5SV",
+        "dbName": "postgres"
+    }
+}

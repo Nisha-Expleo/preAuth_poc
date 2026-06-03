@@ -1,0 +1,13 @@
+{
+    "displayName": "HealtPreAuth-Nisha-POC",
+    "appName": "healtpreauth-nisha-poc",
+    "description": "Cashless Claim Pre-Authorization Journey",
+    "lastModified": "2026-05-25T07:01:53.547Z",
+    "imgSourcePath": "",
+    "version": "1.0.0",
+    "appType": "apiOnly",
+    "templateName": "blank",
+    "createDate": "2026-05-25T07:01:48.876Z",
+    "analyticsId": "7d3b55e4-2f4d-8f5f-0645-ee9519ddaacc",
+    "createdStudioVersion": "9.3.0"
+}

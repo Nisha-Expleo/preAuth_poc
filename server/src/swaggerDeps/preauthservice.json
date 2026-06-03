@@ -1,0 +1,288 @@
+{
+    "/user/:id": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "user_id ",
+                    "description": "user_id ",
+                    "required": true
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "User detail"
+                },
+                "404": {
+                    "description": "Book not found"
+                },
+                "any": {
+                    "schema": {
+                        "type": "object",
+                        "$ref": "#/definitions/users ~ users"
+                    },
+                    "description": ""
+                }
+            },
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/procedureCatalog": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "body",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/roomcap": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "body",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/preAuth/create": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "preAuth creation payload",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/preauth/:id": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "id",
+                    "required": true
+                }
+            ],
+            "responses": {
+                "200": {
+                    "schema": {
+                        "type": "object",
+                        "$ref": "#/definitions/users ~ preauth_requests"
+                    },
+                    "description": ""
+                }
+            },
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/preauth/:id/mo-action": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "preAuthId",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "action",
+                    "description": "action",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "remark",
+                    "description": "remark",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/estimatedPayableWorkflow": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "sumInsured",
+                    "description": "sumInsured",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "RoomCategory",
+                    "description": "RoomCategory",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "ProcedureCode",
+                    "description": "ProcedureCode",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "requestedAmount",
+                    "description": "requestedAmount",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "lengthOfStayDays",
+                    "description": "lengthOfStayDays",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "preauth_id",
+                    "description": "preauth_id",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "PatientAge",
+                    "description": "PatientAge",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/reviewDecision": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "PatientAge",
+                    "description": "PatientAge",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "RequestedAmount",
+                    "description": "RequestedAmount",
+                    "required": true
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/preauth/:id/authorizer-action": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "preAuthId",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "action",
+                    "description": "action",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "final_payable",
+                    "description": "final_payable",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "remark",
+                    "description": "remark",
+                    "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    }
+}

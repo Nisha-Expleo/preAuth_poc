@@ -130,44 +130,8 @@
             "parameters": [
                 {
                     "in": "body",
-                    "name": "sumInsured",
-                    "description": "sumInsured",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "RoomCategory",
-                    "description": "RoomCategory",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "ProcedureCode",
-                    "description": "ProcedureCode",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "requestedAmount",
-                    "description": "requestedAmount",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "lengthOfStayDays",
-                    "description": "lengthOfStayDays",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "preauth_id",
-                    "description": "preauth_id",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "PatientAge",
-                    "description": "PatientAge",
+                    "name": "body",
+                    "description": "payload for reel api",
                     "required": false
                 }
             ],

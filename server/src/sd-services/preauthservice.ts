@@ -1340,7 +1340,7 @@ export class preauthservice {
     try {
       const body = bh.input.body || {};
 
-      console.log('Runtime Request:', body);
+      // console.log("Runtime Request:", body);
 
       // Validate input object
       if (!body.inputObj) {
@@ -1374,7 +1374,10 @@ export class preauthservice {
         },
       };
 
-      console.log('Prepared Payload:', bh.local.payload);
+      // console.log(
+      //     "Prepared Payload:",
+      //     bh.local.payload
+      // );
 
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_33o1v1r4aAbBT3EH(bh, parentSpanInst);
@@ -1455,7 +1458,10 @@ export class preauthservice {
       parentSpanInst
     );
     try {
-      console.log('Runtime API Response:', bh.local.result);
+      // console.log(
+      //     "Runtime API Response:",
+      //     bh.local.result
+      // );
 
       // Extract preauth id
       const preauthId = bh.input.body.inputObj.preauth_id;

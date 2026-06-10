@@ -1791,59 +1791,11 @@
             "responses": [],
             "params": [
                 {
-                    "key": "sumInsured",
-                    "desc": "sumInsured",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_q2NSMwLaR04XUai9",
-                    "valid": true
-                },
-                {
-                    "key": "RoomCategory",
-                    "desc": "RoomCategory",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_wDBZgARs5DNc91Tg",
-                    "valid": true
-                },
-                {
-                    "key": "ProcedureCode",
-                    "desc": "ProcedureCode",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_xKxslzvBwwBz1pQe",
-                    "valid": true
-                },
-                {
-                    "key": "requestedAmount",
-                    "desc": "requestedAmount",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_tdw3MZ8s771y4vqp",
-                    "valid": true
-                },
-                {
-                    "key": "lengthOfStayDays",
-                    "desc": "lengthOfStayDays",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_r845mvGJqoSkJlpt",
-                    "valid": true
-                },
-                {
-                    "key": "preauth_id",
-                    "desc": "preauth_id",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_eCnelUuILbtn8vBz",
-                    "valid": true
-                },
-                {
-                    "key": "PatientAge",
-                    "desc": "PatientAge",
+                    "key": "body",
+                    "desc": "payload for reel api",
                     "type": "body",
                     "required": false,
-                    "rowId": "sd_xUvqzpz6IPvTe1oy",
+                    "rowId": "sd_LmXcSr51V0djmaoz",
                     "valid": true
                 }
             ],
@@ -1882,7 +1834,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "const body = bh.input.body || {};\n \nconsole.log(\"Runtime Request:\", body);\n \n \n// Validate input object\nif (!body.inputObj) {\n \n    bh.local.response = {\n        message: \"inputObj is required\"\n    };\n \n    return;\n}\n \n \n// Hardcoded payload\nbh.local.payload = {\n \n    workflowId:\n        \"df8503db-4d70-4754-b645-49939fe38c00\",\n \n    version: \"1.0.0\",\n \n    inputObj: {\n \n         preauth_id:\n            body.inputObj.preauth_id,\n            \n        sumInsured:\n            body.inputObj.sumInsured,\n \n        RoomCategory:\n            body.inputObj.RoomCategory,\n \n        ProcedureCode:\n            body.inputObj.ProcedureCode,\n \n        requestedAmount:\n            body.inputObj.requestedAmount,\n \n        lengthOfStayDays:\n            body.inputObj.lengthOfStayDays,\n\n        PatientAge:body.inputObj.PatientAge\n    }\n};\n \n \nconsole.log(\n    \"Prepared Payload:\",\n    bh.local.payload\n);\n \n\n \n\n ",
+        "script": "const body = bh.input.body || {};\n \n// console.log(\"Runtime Request:\", body);\n \n \n// Validate input object\nif (!body.inputObj) {\n \n    bh.local.response = {\n        message: \"inputObj is required\"\n    };\n \n    return;\n}\n \n \n// Hardcoded payload\nbh.local.payload = {\n \n    workflowId:\n        \"df8503db-4d70-4754-b645-49939fe38c00\",\n \n    version: \"1.0.0\",\n \n    inputObj: {\n \n         preauth_id:\n            body.inputObj.preauth_id,\n            \n        sumInsured:\n            body.inputObj.sumInsured,\n \n        RoomCategory:\n            body.inputObj.RoomCategory,\n \n        ProcedureCode:\n            body.inputObj.ProcedureCode,\n \n        requestedAmount:\n            body.inputObj.requestedAmount,\n \n        lengthOfStayDays:\n            body.inputObj.lengthOfStayDays,\n\n        PatientAge:body.inputObj.PatientAge\n    }\n};\n \n \n// console.log(\n//     \"Prepared Payload:\",\n//     bh.local.payload\n// );\n \n\n \n\n ",
         "functionName": "sd_QiakUixTiKg1F25o",
         "category": "Function",
         "x": 185,
@@ -2046,7 +1998,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "console.log(\n    \"Runtime API Response:\",\n    bh.local.result\n);\n\n// Extract preauth id\nconst preauthId =\n    bh.input.body.inputObj.preauth_id;\n\n// Extract estimated payable\nconst estimatedPayable =\n    bh.local.result.payload.result.estimatedPayable;\n\n// Map Route → Status\nconst route =bh.local.result.payload.result.Route;\nlet status = \"SUBMITTED\";\n\nif (route === \"AUTO_APPROVE\") {\n    status = \"APPROVED\";\n}\nelse if (route === \"MO_REVIEW\") {\n    status = \"MO_REVIEW\";\n}\nelse if (route === \"MO_REVIEW+AUTHORIZER\") {\n    status = \"AUTHORIZER\";\n}\n\n\n// Prepare UPDATE payload\nbh.local.updatePayload = {\n\n    preauth_id: preauthId,\n\n    estimated_payable: estimatedPayable,\n\n    status: status\n};\n\n\nconsole.log(\n    \"Prepared Update Payload:\",\n    bh.local.updatePayload\n);",
+        "script": "// console.log(\n//     \"Runtime API Response:\",\n//     bh.local.result\n// );\n\n// Extract preauth id\nconst preauthId =\n    bh.input.body.inputObj.preauth_id;\n\n// Extract estimated payable\nconst estimatedPayable =\n    bh.local.result.payload.result.estimatedPayable;\n\n// Map Route → Status\nconst route =bh.local.result.payload.result.Route;\nlet status = \"SUBMITTED\";\n\nif (route === \"AUTO_APPROVE\") {\n    status = \"APPROVED\";\n}\nelse if (route === \"MO_REVIEW\") {\n    status = \"MO_REVIEW\";\n}\nelse if (route === \"MO_REVIEW+AUTHORIZER\") {\n    status = \"AUTHORIZER\";\n}\n\n\n// Prepare UPDATE payload\nbh.local.updatePayload = {\n\n    preauth_id: preauthId,\n\n    estimated_payable: estimatedPayable,\n\n    status: status\n};\n\n\nconsole.log(\n    \"Prepared Update Payload:\",\n    bh.local.updatePayload\n);",
         "functionName": "sd_fghQIYyafpll1MfN",
         "category": "Function",
         "x": 405,

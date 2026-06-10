@@ -12,235 +12,6 @@
         "relativeParentPath": ""
     },
     {
-        "id": "sd_j9bq4c7s0RAMYr5Y",
-        "type": "HttpIn",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "start",
-        "name": "getUserById",
-        "path": "/user/:id",
-        "uploadpath": "",
-        "summary": "",
-        "description": "",
-        "method": "get",
-        "sequenceId": "",
-        "consumes": "",
-        "produces": "",
-        "filetype": "path",
-        "acceptFileUpload": false,
-        "useDataModel": false,
-        "dataModelIsArray": false,
-        "uploadFileOptions": "",
-        "erd": "",
-        "erdName": "",
-        "entity": "",
-        "entityId": "",
-        "ref": "",
-        "editableListData": {
-            "responses": [],
-            "params": [
-                {
-                    "key": "user_id ",
-                    "desc": "user_id ",
-                    "type": "path",
-                    "required": true,
-                    "rowId": "sd_pIS7x7mgPuRFYnEt",
-                    "valid": true
-                }
-            ],
-            "produces": [],
-            "consumes": [
-                {
-                    "key": "application/json",
-                    "rowId": "sd_58Hg5jj8mL0jBOLy",
-                    "valid": true
-                }
-            ]
-        },
-        "inputs": 0,
-        "outputs": 1,
-        "validateRequestUsingSwaggerDocs": false,
-        "category": "HTTP",
-        "x": 85,
-        "y": 80,
-        "wires": [
-            [
-                "sd_ZuIIJtj8P9ZeaY6w"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "uploadpath": {
-                "type": "str",
-                "value": "",
-                "nullable": "true",
-                "nullableValue": "",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {},
-        "generateNext": true,
-        "serviceName": "preauthservice",
-        "functionName": "sd_j9bq4c7s0RAMYr5Y"
-    },
-    {
-        "id": "sd_ZuIIJtj8P9ZeaY6w",
-        "type": "find",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "erd": "_DM_6fii80bkk",
-        "entityId": "_EN_hxjfhb8pbg",
-        "_UI_entityName": "users",
-        "dbConfigId": "sd_dm4nlxZgQKbuz5SV",
-        "primayKey": "user_id",
-        "operationType": "findByID",
-        "_ID": "bh.input.params.id",
-        "filterBy": "bh.input.params.id ",
-        "offSet": "bh",
-        "orderBy": "bh",
-        "pageSize": "bh",
-        "resultMapping": "bh.local.result",
-        "functionName": "sd_ZuIIJtj8P9ZeaY6w",
-        "category": "Data Model",
-        "x": 205,
-        "y": 80,
-        "wires": [
-            [
-                "sd_vzKpwUb5vGTHojZb"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "_ID": {
-                "type": "bh.input",
-                "value": "params.id",
-                "constant": false
-            },
-            "filterBy": {
-                "type": "bh.input",
-                "value": "params.id ",
-                "constant": false
-            },
-            "offSet": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "orderBy": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "pageSize": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "resultMapping": {
-                "type": "bh.local",
-                "value": "result",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {
-            "filterBy": true,
-            "offSet": true,
-            "orderBy": true,
-            "pageSize": true
-        },
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_vzKpwUb5vGTHojZb",
-        "type": "Script",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "common",
-        "nodeType": "flow",
-        "name": "",
-        "script": "if(bh.local.result.length > 0){\n    bh.local.statusCode = 200;\n}else{\n bh.local.statusCode = 404;\n}",
-        "functionName": "sd_vzKpwUb5vGTHojZb",
-        "category": "Function",
-        "x": 345,
-        "y": 80,
-        "wires": [
-            [
-                "sd_7CFXNolQYRDkDwTU"
-            ]
-        ],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_7CFXNolQYRDkDwTU",
-        "type": "HttpOut",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "headers": {},
-        "responseBody": {
-            "type": "bh.local",
-            "value": "result.payload.records",
-            "ssd_typedInputField": true
-        },
-        "httpcode": {
-            "type": "bh.local",
-            "value": "statusCode",
-            "ssd_typedInputField": true
-        },
-        "responseType": "obj",
-        "swaggerResponse": {},
-        "responseMapping": {
-            "status": "bh.local.statusCode",
-            "obj": "bh.local.result.payload.records",
-            "send": "bh.local.result.payload.records"
-        },
-        "dataModelIsArray": false,
-        "cookies": [],
-        "inputs": 1,
-        "outputs": 0,
-        "erd": "_DM_6fii80bkk",
-        "entity": "users",
-        "entityId": "_EN_hxjfhb8pbg",
-        "ref": "#/definitions/users ~ users",
-        "editableListData": {
-            "headers": [],
-            "produces": [],
-            "responses": [
-                {
-                    "key": "User detail",
-                    "value": "200",
-                    "rowId": "sd_4RRO6aDvvmv0BU3m",
-                    "valid": true
-                },
-                {
-                    "key": "Book not found",
-                    "value": "404",
-                    "rowId": "sd_BrnLUh9DsUfoDyr3",
-                    "valid": true
-                }
-            ]
-        },
-        "cookiesList": {},
-        "switchStates": {
-            "headers": "Map",
-            "cookies": "Map"
-        },
-        "functionName": "sd_7CFXNolQYRDkDwTU",
-        "category": "HTTP",
-        "x": 545,
-        "y": 80,
-        "wires": [],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
         "id": "sd_JNBcVR3MqwDFZi15",
         "type": "HttpIn",
         "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
@@ -496,7 +267,6 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
-        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -572,7 +342,6 @@
         "nodeType": "flow",
         "name": "",
         "method": "post",
-        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "\"https://reels-pt.neutrinos-apps.com/integration/api/records/filter/72b58c39-817f-4204-95dc-4f5eec8fd929/5cbbfa77-6882-4944-940b-de87a8edd576/d9e21782-e593-4469-8da4-63e1ac0ffb5d\"",
         "urlMappingObj": {
@@ -580,7 +349,6 @@
             "mapVarValue": "https://reels-pt.neutrinos-apps.com/integration/api/records/filter/72b58c39-817f-4204-95dc-4f5eec8fd929/5cbbfa77-6882-4944-940b-de87a8edd576/d9e21782-e593-4469-8da4-63e1ac0ffb5d"
         },
         "ret": "json",
-        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.payload",
         "reqBodyObj": {
@@ -611,16 +379,11 @@
                 "defaultValue": "application/json"
             }
         ],
-        "headerMapping": "",
         "headerMappingObj": {},
         "params": {},
         "paramsObj": [],
-        "paramMapping": "",
         "paramMappingObj": {},
-        "authType": "",
         "useAuthTypeMappingObj": {},
-        "useAuthTypeMap": {},
-        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -636,7 +399,6 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
-        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -733,7 +495,6 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
-        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -902,235 +663,13 @@
         "generated": true
     },
     {
-        "id": "sd_BnzhOztGNiGWAQjT",
-        "type": "HttpIn",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "start",
-        "name": "GetById",
-        "path": "/preauth/:id",
-        "uploadpath": "",
-        "summary": "",
-        "description": "",
-        "method": "get",
-        "sequenceId": "",
-        "consumes": "",
-        "produces": "",
-        "filetype": "path",
-        "acceptFileUpload": false,
-        "useDataModel": false,
-        "dataModelIsArray": false,
-        "uploadFileOptions": "",
-        "erd": "",
-        "erdName": "",
-        "entity": "",
-        "entityId": "",
-        "ref": "",
-        "editableListData": {
-            "responses": [],
-            "params": [
-                {
-                    "key": "id",
-                    "desc": "id",
-                    "type": "path",
-                    "required": true,
-                    "rowId": "sd_PwIfwZnHOO9MhpQI",
-                    "valid": true
-                }
-            ],
-            "produces": [],
-            "consumes": [
-                {
-                    "key": "application/json",
-                    "rowId": "sd_cKJYj5jelzYouniJ",
-                    "valid": true
-                }
-            ]
-        },
-        "inputs": 0,
-        "outputs": 1,
-        "validateRequestUsingSwaggerDocs": false,
-        "category": "HTTP",
-        "x": 65,
-        "y": 700,
-        "wires": [
-            [
-                "sd_THKjYSwQGB82nHig"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "uploadpath": {
-                "type": "str",
-                "value": "",
-                "nullable": "true",
-                "nullableValue": "",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {},
-        "generateNext": true,
-        "serviceName": "preauthservice",
-        "functionName": "sd_BnzhOztGNiGWAQjT"
-    },
-    {
-        "id": "sd_h4wYJaPhnwn2nDUq",
-        "type": "Script",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "common",
-        "nodeType": "flow",
-        "name": "",
-        "script": "bh.local.check = true;\n\nconsole.log(\n    \"Get PreAuth By ID Service Called\"\n);\n\n\n// Safe validation\nif (\n    !bh.local.getPreAuthResult ||\n    !bh.local.getPreAuthResult[0] ||\n    !bh.local.getPreAuthResult[0].local ||\n    !bh.local.getPreAuthResult[0].local.result ||\n    !bh.local.getPreAuthResult[0].local.result.payload ||\n    bh.local.getPreAuthResult[0].local.result.payload.length == 0\n) {\n\n    bh.local.check = false;\n\n    bh.local.response = {\n        message: \"No PreAuth Request Found\",\n        status: 404\n    };\n\n    console.log(\n        \"No PreAuth Found with this ID\"\n    );\n\n    return;\n}\n\n\n// If found prepare response\nif (bh.local.check) {\n\n    const preauth =\n        bh.local.getPreAuthResult[0]\n        .local.result.payload[0];\n\n    bh.local.response = {\n\n        preauth_id:\n            preauth.preauth_id,\n\n        requested_amount:\n            preauth.requested_amount,\n\n        estimated_payable:\n            preauth.estimated_payable,\n\n        final_payable:\n            preauth.final_payable,\n\n        mo_remarks:\n            preauth.mo_remarks,\n\n        authorizer_remarks:\n            preauth.authorizer_remarks,\n\n        status:\n            preauth.status\n    };\n\n    console.log(\n        \"PreAuth Found Successfully\",\n        bh.local.response\n    );\n}",
-        "functionName": "sd_h4wYJaPhnwn2nDUq",
-        "category": "Function",
-        "x": 265,
-        "y": 700,
-        "wires": [
-            [
-                "sd_iviQW8iiybtTV24K"
-            ]
-        ],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_THKjYSwQGB82nHig",
-        "type": "find",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "erd": "_DM_6fii80bkk",
-        "entityId": "_EN_lfgkiu8oko",
-        "_UI_entityName": "preauth_requests",
-        "dbConfigId": "sd_dm4nlxZgQKbuz5SV",
-        "primayKey": "preauth_id",
-        "operationType": "findByID",
-        "_ID": "bh.input.params.id",
-        "filterBy": "bh",
-        "offSet": "bh",
-        "orderBy": "bh",
-        "pageSize": "bh",
-        "resultMapping": "bh.local.result",
-        "functionName": "sd_THKjYSwQGB82nHig",
-        "category": "Data Model",
-        "x": 165,
-        "y": 700,
-        "wires": [
-            [
-                "sd_h4wYJaPhnwn2nDUq"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "_ID": {
-                "type": "bh.input",
-                "value": "params.id",
-                "constant": false
-            },
-            "filterBy": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "offSet": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "orderBy": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "pageSize": {
-                "type": "bh",
-                "value": "",
-                "constant": false
-            },
-            "resultMapping": {
-                "type": "bh.local",
-                "value": "result",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {
-            "filterBy": true,
-            "offSet": true,
-            "orderBy": true,
-            "pageSize": true
-        },
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_iviQW8iiybtTV24K",
-        "type": "HttpOut",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "headers": {},
-        "responseBody": {
-            "type": "bh.local",
-            "value": "result",
-            "ssd_typedInputField": true
-        },
-        "httpcode": {
-            "type": "num",
-            "value": 200,
-            "ssd_typedInputField": true
-        },
-        "responseType": "obj",
-        "swaggerResponse": {},
-        "responseMapping": {
-            "status": 200,
-            "obj": "bh.local.result",
-            "send": "bh.local.result"
-        },
-        "dataModelIsArray": false,
-        "cookies": [],
-        "inputs": 1,
-        "outputs": 0,
-        "erd": "_DM_6fii80bkk",
-        "entity": "preauth_requests",
-        "entityId": "_EN_lfgkiu8oko",
-        "ref": "#/definitions/users ~ preauth_requests",
-        "editableListData": {
-            "headers": [],
-            "produces": [
-                {
-                    "key": "application/json",
-                    "rowId": "sd_DbqRRIceZl3lGTHO",
-                    "valid": true
-                }
-            ],
-            "responses": []
-        },
-        "cookiesList": {},
-        "switchStates": {
-            "headers": "Map",
-            "cookies": "Map"
-        },
-        "functionName": "sd_iviQW8iiybtTV24K",
-        "category": "HTTP",
-        "x": 365,
-        "y": 700,
-        "wires": [],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
         "id": "sd_Hkkw8m4LuTIFR3tM",
         "type": "HttpIn",
         "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
         "viewType": "server",
         "nodeType": "start",
         "name": "mo-action ",
-        "path": "/preauth/:id/mo-action",
+        "path": "/preauth/mo-action",
         "uploadpath": "",
         "summary": "",
         "description": "",
@@ -1142,7 +681,6 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
-        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -1154,7 +692,7 @@
                 {
                     "key": "id",
                     "desc": "preAuthId",
-                    "type": "path",
+                    "type": "body",
                     "required": true,
                     "rowId": "sd_hRG6Db4zzlwuHbJ5",
                     "valid": true
@@ -1217,7 +755,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "const body = bh.input.body || {};\n\nconst preauthId = bh.input.params.id;\n\nconsole.log(\n    \"MO Action Request:\",\n    body\n);\n\nconsole.log(\n    \"PreAuth ID:\",\n    preauthId\n);\n\n\n// Validate action\nif (\n    !body.action\n) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\n// Validate remark\nif (\n    !body.remark\n) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Prepare update object\nbh.local.moActionData = {\n\n    preauth_id: preauthId,\n\n    mo_remarks: body.remark\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.moActionData.status =\n        \"AUTHORIZER\";\n\n    bh.local.response = {\n\n        message:\n            \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"AUTHORIZER\"\n    };\n}\n\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.moActionData.status =\n        \"REJECTED\";\n\n    bh.local.response = {\n\n        message:\n            \"MO Rejected PreAuth\",\n\n        preauth_id: preauthId,\n\n        status: \"REJECTED\"\n    };\n}\n\n\nconsole.log(\n    \"Prepared MO Action Data:\",\n    bh.local.moActionData\n);\n\nconsole.log(\n    \"Updating PreAuth Request...\"\n);\n\n\n// Execute update query payload\nbh.local.updatePreAuthPayload = {\n\n    preauth_id:\n        bh.local.moActionData.preauth_id,\n\n    mo_remarks:\n        bh.local.moActionData.mo_remarks,\n\n    status:\n        bh.local.moActionData.status\n};\n\n\nconsole.log(\n    \"Update Payload:\",\n    bh.local.updatePreAuthPayload\n);",
+        "script": "const body = bh.input.body || {};\n\nconst preauthId = body.id;\n\nconsole.log(\n    \"MO Action Request:\",\n    body\n);\n\nconsole.log(\n    \"PreAuth ID:\",preauthId\n);\n\n\n// Validate action\nif (\n    !body.action\n) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\n// Validate remark\nif (\n    !body.remark\n) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Prepare update object\nbh.local.moActionData = {\n\n    preauth_id: preauthId,\n\n    mo_remarks: body.remark\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.moActionData.status = \"AUTHORIZER\";\n\n    bh.local.response = {\n\n        message: \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"AUTHORIZER\"\n    };\n}\n\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.moActionData.status =\n        \"REJECTED\";\n\n    bh.local.response = {\n\n        message:\n            \"MO Rejected PreAuth\",\n\n        preauth_id: preauthId,\n\n        status: \"REJECTED\"\n    };\n}\n\n\nconsole.log(\n    \"Prepared MO Action Data:\",\n    bh.local.moActionData\n);\n\nconsole.log(\n    \"Updating PreAuth Request...\"\n);\n\n\n// Execute update query payload\nbh.local.updatePreAuthPayload = {\n\n    preauth_id:\n        bh.local.moActionData.preauth_id,\n\n    mo_remarks:\n        bh.local.moActionData.mo_remarks,\n\n    status:\n        bh.local.moActionData.status\n};\n\n\nconsole.log(\n    \"Update Payload:\",\n    bh.local.updatePreAuthPayload\n);",
         "functionName": "sd_DhFqLeMASoCRiKXF",
         "category": "Function",
         "x": 165,
@@ -1342,7 +880,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "const body = bh.input.body || {};\n\nconst preauthId =\n    bh.input.params.id;\n\n\n// Validation\nif (!body.action) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\nif (!body.remark) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Generate Approval Number\nconst today = new Date();\n\nconst yyyy =\n    today.getFullYear();\n\nconst randomNo =\n    Math.floor(\n        10000 + Math.random() * 90000\n    );\n\nconst approvalNumber =\n    `APR-${yyyy}-${randomNo}`;\n\n\n\n// Prepare Payload\nbh.local.updatePayload = {\n\n    preauth_id:\n        preauthId,\n\n    final_payable:\n        body.final_payable || 0,\n\n    authorizer_remarks:\n        body.remark,\n\n    updated_at:\n        new Date()\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.updatePayload.status =\n        \"APPROVED\";\n\n    bh.local.updatePayload.approval_number =\n        approvalNumber;\n\n    bh.local.response = {\n\n        message:\n            \"PreAuth Approved Successfully\",\n\n        preauth_id:\n            preauthId,\n\n        approval_number:\n            approvalNumber,\n\n        status:\n            \"APPROVED\"\n    };\n}\n\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.updatePayload.status =\n        \"REJECTED\";\n\n    bh.local.updatePayload.approval_number =\n        null;\n\n    bh.local.response = {\n\n        message:\n            \"PreAuth Rejected\",\n\n        preauth_id:\n            preauthId,\n\n        status:\n            \"REJECTED\"\n    };\n}",
+        "script": "const body = bh.input.body || {};\n\nconst preauthId = body.id;\n\n\n// Validation\nif (!body.action) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\nif (!body.remark) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Generate Approval Number\nconst today = new Date();\n\nconst yyyy =\n    today.getFullYear();\n\nconst randomNo =\n    Math.floor(\n        10000 + Math.random() * 90000\n    );\n\nconst approvalNumber =\n    `APR-${yyyy}-${randomNo}`;\n\n\n\n// Prepare Payload\nbh.local.updatePayload = {\n\n    preauth_id:\n        preauthId,\n\n    final_payable:\n        body.final_payable || 0,\n\n    authorizer_remarks:\n        body.remark,\n\n    updated_at:\n        new Date()\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.updatePayload.status =\n        \"APPROVED\";\n\n    bh.local.updatePayload.approval_number =\n        approvalNumber;\n\n    bh.local.response = {\n\n        message:\n            \"PreAuth Approved Successfully\",\n\n        preauth_id:\n            preauthId,\n\n        approval_number:\n            approvalNumber,\n\n        status:\n            \"APPROVED\"\n    };\n}\n\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.updatePayload.status =\n        \"REJECTED\";\n\n    bh.local.updatePayload.approval_number =\n        null;\n\n    bh.local.response = {\n\n        message:\n            \"PreAuth Rejected\",\n\n        preauth_id:\n            preauthId,\n\n        status:\n            \"REJECTED\"\n    };\n}",
         "functionName": "sd_jNs49iM7nLgtzPLM",
         "category": "Function",
         "x": 225,
@@ -1383,6 +921,7 @@
             "send": "bh.local.result"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -1410,320 +949,13 @@
         "generated": true
     },
     {
-        "id": "sd_L4lYLny3qAgBFZ94",
-        "type": "HttpIn",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "start",
-        "name": "ReelWorkflow",
-        "path": "/estimatedPayableWorkflow",
-        "uploadpath": "",
-        "summary": "",
-        "description": "",
-        "method": "post",
-        "sequenceId": "",
-        "consumes": "",
-        "produces": "",
-        "filetype": "path",
-        "acceptFileUpload": false,
-        "useDataModel": false,
-        "dataModelIsArray": false,
-        "uploadFileOptions": "",
-        "erd": "",
-        "erdName": "",
-        "entity": "",
-        "entityId": "",
-        "ref": "",
-        "editableListData": {
-            "responses": [],
-            "params": [
-                {
-                    "key": "sumInsured",
-                    "desc": "sumInsured",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_q2NSMwLaR04XUai9",
-                    "valid": true
-                },
-                {
-                    "key": "RoomCategory",
-                    "desc": "RoomCategory",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_wDBZgARs5DNc91Tg",
-                    "valid": true
-                },
-                {
-                    "key": "ProcedureCode",
-                    "desc": "ProcedureCode",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_xKxslzvBwwBz1pQe",
-                    "valid": true
-                },
-                {
-                    "key": "requestedAmount",
-                    "desc": "requestedAmount",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_tdw3MZ8s771y4vqp",
-                    "valid": true
-                },
-                {
-                    "key": "lengthOfStayDays",
-                    "desc": "lengthOfStayDays",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_r845mvGJqoSkJlpt",
-                    "valid": true
-                },
-                {
-                    "key": "preauth_id",
-                    "desc": "preauth_id",
-                    "type": "body",
-                    "required": true,
-                    "rowId": "sd_eCnelUuILbtn8vBz",
-                    "valid": true
-                },
-                {
-                    "key": "PatientAge",
-                    "desc": "PatientAge",
-                    "type": "body",
-                    "required": false,
-                    "rowId": "sd_xUvqzpz6IPvTe1oy",
-                    "valid": true
-                }
-            ],
-            "produces": [],
-            "consumes": []
-        },
-        "inputs": 0,
-        "outputs": 1,
-        "validateRequestUsingSwaggerDocs": false,
-        "category": "HTTP",
-        "x": 85,
-        "y": 1260,
-        "wires": [
-            [
-                "sd_QiakUixTiKg1F25o"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "uploadpath": {
-                "type": "str",
-                "value": "",
-                "nullable": "true",
-                "nullableValue": "",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {},
-        "generateNext": true,
-        "serviceName": "preauthservice",
-        "functionName": "sd_L4lYLny3qAgBFZ94"
-    },
-    {
-        "id": "sd_QiakUixTiKg1F25o",
-        "type": "Script",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "common",
-        "nodeType": "flow",
-        "name": "",
-        "script": "const body = bh.input.body || {};\n \nconsole.log(\"Runtime Request:\", body);\n \n \n// Validate input object\nif (!body.inputObj) {\n \n    bh.local.response = {\n        message: \"inputObj is required\"\n    };\n \n    return;\n}\n \n \n// Hardcoded payload\nbh.local.payload = {\n \n    workflowId:\n        \"df8503db-4d70-4754-b645-49939fe38c00\",\n \n    version: \"1.0.0\",\n \n    inputObj: {\n \n         preauth_id:\n            body.inputObj.preauth_id,\n            \n        sumInsured:\n            body.inputObj.sumInsured,\n \n        RoomCategory:\n            body.inputObj.RoomCategory,\n \n        ProcedureCode:\n            body.inputObj.ProcedureCode,\n \n        requestedAmount:\n            body.inputObj.requestedAmount,\n \n        lengthOfStayDays:\n            body.inputObj.lengthOfStayDays,\n\n        PatientAge:body.inputObj.PatientAge\n    }\n};\n \n \nconsole.log(\n    \"Prepared Payload:\",\n    bh.local.payload\n);\n \n\n \n\n ",
-        "functionName": "sd_QiakUixTiKg1F25o",
-        "category": "Function",
-        "x": 185,
-        "y": 1260,
-        "wires": [
-            [
-                "sd_33o1v1r4aAbBT3EH"
-            ]
-        ],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_33o1v1r4aAbBT3EH",
-        "type": "ServerHttpRequest",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "method": "post",
-        "methodMapping": "",
-        "methodMappingObj": {},
-        "urlMapping": "\"https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync\"",
-        "urlMappingObj": {
-            "mapVarType": "str",
-            "mapVarValue": "https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync"
-        },
-        "ret": "json",
-        "retMapping": "",
-        "retMappingObj": {},
-        "reqBody": "bh.local.payload",
-        "reqBodyObj": {
-            "mapVarType": "bh.local",
-            "mapVarValue": "payload"
-        },
-        "resultMapping": "bh.local.result",
-        "resultMappingObj": {
-            "mapVarType": "bh.local",
-            "mapVarValue": "result"
-        },
-        "headers": {
-            "accept": "application/json",
-            "Content-Type": "application/json",
-            "token": "dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762"
-        },
-        "headersObj": [
-            {
-                "key": "accept",
-                "defaultValue": "application/json"
-            },
-            {
-                "key": "Content-Type",
-                "defaultValue": "application/json"
-            },
-            {
-                "key": "token",
-                "defaultValue": "dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762"
-            }
-        ],
-        "headerMapping": "",
-        "headerMappingObj": {},
-        "params": {},
-        "paramsObj": [],
-        "paramMapping": "",
-        "paramMappingObj": {},
-        "authType": "",
-        "useAuthTypeMappingObj": {},
-        "useAuthTypeMap": {},
-        "useAuthType": "",
-        "useAuthUsername": "",
-        "useAuthUsernameMappingObj": "",
-        "useAuthPassword": "",
-        "useAuthPasswordMappingObj": "",
-        "useAuthToken": "",
-        "useAuthTokenMappingObj": "",
-        "useQueryString": false,
-        "tls": "",
-        "followRedirect": true,
-        "paytoqs": false,
-        "useAuthentication": false,
-        "rejectUnauthorized": false,
-        "proxy": "",
-        "useProxy": false,
-        "usetls": false,
-        "cookies": [],
-        "cookiesMapObj": {},
-        "cookiesList": {},
-        "switchStates": {
-            "cookies": "Map"
-        },
-        "editableListData": {},
-        "timeout": {
-            "type": "num",
-            "value": ""
-        },
-        "functionName": "sd_33o1v1r4aAbBT3EH",
-        "category": "HTTP",
-        "x": 325,
-        "y": 1260,
-        "wires": [
-            [
-                "sd_fghQIYyafpll1MfN"
-            ]
-        ],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_wDUYBQz6u2X0ZkyC",
-        "type": "HttpOut",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "headers": {},
-        "responseBody": {
-            "type": "bh.local",
-            "value": "tableresult",
-            "ssd_typedInputField": true
-        },
-        "httpcode": {
-            "type": "num",
-            "value": 200,
-            "ssd_typedInputField": true
-        },
-        "responseType": "obj",
-        "swaggerResponse": {},
-        "responseMapping": {
-            "status": 200,
-            "obj": "bh.local.tableresult",
-            "send": "bh.local.tableresult"
-        },
-        "dataModelIsArray": false,
-        "cookies": [],
-        "inputs": 1,
-        "outputs": 0,
-        "erd": "",
-        "entity": "",
-        "entityId": "",
-        "ref": "",
-        "editableListData": {
-            "headers": [],
-            "produces": [],
-            "responses": []
-        },
-        "cookiesList": {},
-        "switchStates": {
-            "headers": "Map",
-            "cookies": "Map"
-        },
-        "functionName": "sd_wDUYBQz6u2X0ZkyC",
-        "category": "HTTP",
-        "x": 625,
-        "y": 1260,
-        "wires": [],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_fghQIYyafpll1MfN",
-        "type": "Script",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "common",
-        "nodeType": "flow",
-        "name": "",
-        "script": "console.log(\n    \"Runtime API Response:\",\n    bh.local.result\n);\n\n// Extract preauth id\nconst preauthId =\n    bh.input.body.inputObj.preauth_id;\n\n// Extract estimated payable\nconst estimatedPayable =\n    bh.local.result.payload.result.estimatedPayable;\n\n// Map Route → Status\nconst route =bh.local.result.payload.result.Route;\nlet status = \"SUBMITTED\";\n\nif (route === \"AUTO_APPROVE\") {\n    status = \"APPROVED\";\n}\nelse if (route === \"MO_REVIEW\") {\n    status = \"MO_REVIEW\";\n}\nelse if (route === \"MO_REVIEW_AUTHORIZER\") {\n    status = \"AUTHORIZER\";\n}\n\n\n// Prepare UPDATE payload\nbh.local.updatePayload = {\n\n    preauth_id: preauthId,\n\n    estimated_payable: estimatedPayable,\n\n    status: status\n};\n\n\nconsole.log(\n    \"Prepared Update Payload:\",\n    bh.local.updatePayload\n);",
-        "functionName": "sd_fghQIYyafpll1MfN",
-        "category": "Function",
-        "x": 405,
-        "y": 1260,
-        "wires": [
-            [
-                "sd_VIOAkkukG9mDLqTU"
-            ]
-        ],
-        "__n_excludedFromValidation__": {},
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
         "id": "sd_UwDd5vjqXPRFoCr2",
         "type": "HttpIn",
         "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
         "viewType": "server",
         "nodeType": "start",
         "name": "authorizer-action",
-        "path": "preauth/:id/authorizer-action",
+        "path": "preauth/authorizer-action",
         "uploadpath": "",
         "summary": "",
         "description": "",
@@ -1735,7 +967,6 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
-        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -1747,7 +978,7 @@
                 {
                     "key": "id",
                     "desc": "preAuthId",
-                    "type": "path",
+                    "type": "body",
                     "required": true,
                     "rowId": "sd_nH9bED6Q8uHU7TyZ",
                     "valid": true
@@ -1851,56 +1082,6 @@
             "resultMapping": {
                 "type": "bh.local",
                 "value": "result",
-                "constant": false
-            }
-        },
-        "__n_excludedFromValidation__": {
-            "filterBy": true
-        },
-        "generateNext": false,
-        "serviceName": "preauthservice",
-        "generated": true
-    },
-    {
-        "id": "sd_VIOAkkukG9mDLqTU",
-        "type": "update",
-        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "erd": "_DM_6fii80bkk",
-        "entityId": "_EN_lfgkiu8oko",
-        "_UI_entityName": "preauth_requests",
-        "dbConfigId": "sd_dm4nlxZgQKbuz5SV",
-        "operationType": "updateByID",
-        "filterBy": "",
-        "updateObject": "bh.local.updatePayload",
-        "resultMapping": "bh.local.tableresult",
-        "functionName": "sd_VIOAkkukG9mDLqTU",
-        "category": "Data Model",
-        "x": 540,
-        "y": 1260,
-        "wires": [
-            [
-                "sd_wDUYBQz6u2X0ZkyC"
-            ]
-        ],
-        "__ssdTypeInputs__": {
-            "filterBy": {
-                "type": "bh",
-                "value": "",
-                "nullable": "true",
-                "nullableValue": "",
-                "constant": false
-            },
-            "updateObject": {
-                "type": "bh.local",
-                "value": "updatePayload",
-                "constant": false
-            },
-            "resultMapping": {
-                "type": "bh.local",
-                "value": "tableresult",
                 "constant": false
             }
         },
@@ -2170,7 +1351,6 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
-        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -2579,6 +1759,354 @@
         "y": 600,
         "wires": [],
         "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "preauthservice",
+        "generated": true
+    },
+    {
+        "id": "sd_L4lYLny3qAgBFZ94",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "ReelWorkflow",
+        "path": "/estimatedPayableWorkflow",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [
+                {
+                    "key": "sumInsured",
+                    "desc": "sumInsured",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_q2NSMwLaR04XUai9",
+                    "valid": true
+                },
+                {
+                    "key": "RoomCategory",
+                    "desc": "RoomCategory",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_wDBZgARs5DNc91Tg",
+                    "valid": true
+                },
+                {
+                    "key": "ProcedureCode",
+                    "desc": "ProcedureCode",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_xKxslzvBwwBz1pQe",
+                    "valid": true
+                },
+                {
+                    "key": "requestedAmount",
+                    "desc": "requestedAmount",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_tdw3MZ8s771y4vqp",
+                    "valid": true
+                },
+                {
+                    "key": "lengthOfStayDays",
+                    "desc": "lengthOfStayDays",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_r845mvGJqoSkJlpt",
+                    "valid": true
+                },
+                {
+                    "key": "preauth_id",
+                    "desc": "preauth_id",
+                    "type": "body",
+                    "required": true,
+                    "rowId": "sd_eCnelUuILbtn8vBz",
+                    "valid": true
+                },
+                {
+                    "key": "PatientAge",
+                    "desc": "PatientAge",
+                    "type": "body",
+                    "required": false,
+                    "rowId": "sd_xUvqzpz6IPvTe1oy",
+                    "valid": true
+                }
+            ],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 85,
+        "y": 1260,
+        "wires": [
+            [
+                "sd_QiakUixTiKg1F25o"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "preauthservice",
+        "functionName": "sd_L4lYLny3qAgBFZ94"
+    },
+    {
+        "id": "sd_QiakUixTiKg1F25o",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const body = bh.input.body || {};\n \nconsole.log(\"Runtime Request:\", body);\n \n \n// Validate input object\nif (!body.inputObj) {\n \n    bh.local.response = {\n        message: \"inputObj is required\"\n    };\n \n    return;\n}\n \n \n// Hardcoded payload\nbh.local.payload = {\n \n    workflowId:\n        \"df8503db-4d70-4754-b645-49939fe38c00\",\n \n    version: \"1.0.0\",\n \n    inputObj: {\n \n         preauth_id:\n            body.inputObj.preauth_id,\n            \n        sumInsured:\n            body.inputObj.sumInsured,\n \n        RoomCategory:\n            body.inputObj.RoomCategory,\n \n        ProcedureCode:\n            body.inputObj.ProcedureCode,\n \n        requestedAmount:\n            body.inputObj.requestedAmount,\n \n        lengthOfStayDays:\n            body.inputObj.lengthOfStayDays,\n\n        PatientAge:body.inputObj.PatientAge\n    }\n};\n \n \nconsole.log(\n    \"Prepared Payload:\",\n    bh.local.payload\n);\n \n\n \n\n ",
+        "functionName": "sd_QiakUixTiKg1F25o",
+        "category": "Function",
+        "x": 185,
+        "y": 1260,
+        "wires": [
+            [
+                "sd_33o1v1r4aAbBT3EH"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "preauthservice",
+        "generated": true
+    },
+    {
+        "id": "sd_33o1v1r4aAbBT3EH",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "method": "post",
+        "methodMappingObj": {},
+        "urlMapping": "\"https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync\"",
+        "urlMappingObj": {
+            "mapVarType": "str",
+            "mapVarValue": "https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync"
+        },
+        "ret": "json",
+        "retMappingObj": {},
+        "reqBody": "bh.local.payload",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "payload"
+        },
+        "resultMapping": "bh.local.result",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "result"
+        },
+        "headers": {
+            "accept": "application/json",
+            "Content-Type": "application/json",
+            "token": "dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762"
+        },
+        "headersObj": [
+            {
+                "key": "accept",
+                "defaultValue": "application/json"
+            },
+            {
+                "key": "Content-Type",
+                "defaultValue": "application/json"
+            },
+            {
+                "key": "token",
+                "defaultValue": "dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762"
+            }
+        ],
+        "headerMappingObj": {},
+        "params": {},
+        "paramsObj": [],
+        "paramMappingObj": {},
+        "useAuthTypeMappingObj": {},
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "sd_33o1v1r4aAbBT3EH",
+        "category": "HTTP",
+        "x": 325,
+        "y": 1260,
+        "wires": [
+            [
+                "sd_fghQIYyafpll1MfN"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "preauthservice",
+        "generated": true
+    },
+    {
+        "id": "sd_wDUYBQz6u2X0ZkyC",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "tableresult",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.local.tableresult",
+            "send": "bh.local.tableresult"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_wDUYBQz6u2X0ZkyC",
+        "category": "HTTP",
+        "x": 625,
+        "y": 1260,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "preauthservice",
+        "generated": true
+    },
+    {
+        "id": "sd_fghQIYyafpll1MfN",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "console.log(\n    \"Runtime API Response:\",\n    bh.local.result\n);\n\n// Extract preauth id\nconst preauthId =\n    bh.input.body.inputObj.preauth_id;\n\n// Extract estimated payable\nconst estimatedPayable =\n    bh.local.result.payload.result.estimatedPayable;\n\n// Map Route → Status\nconst route =bh.local.result.payload.result.Route;\nlet status = \"SUBMITTED\";\n\nif (route === \"AUTO_APPROVE\") {\n    status = \"APPROVED\";\n}\nelse if (route === \"MO_REVIEW\") {\n    status = \"MO_REVIEW\";\n}\nelse if (route === \"MO_REVIEW+AUTHORIZER\") {\n    status = \"AUTHORIZER\";\n}\n\n\n// Prepare UPDATE payload\nbh.local.updatePayload = {\n\n    preauth_id: preauthId,\n\n    estimated_payable: estimatedPayable,\n\n    status: status\n};\n\n\nconsole.log(\n    \"Prepared Update Payload:\",\n    bh.local.updatePayload\n);",
+        "functionName": "sd_fghQIYyafpll1MfN",
+        "category": "Function",
+        "x": 405,
+        "y": 1260,
+        "wires": [
+            [
+                "sd_VIOAkkukG9mDLqTU"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "preauthservice",
+        "generated": true
+    },
+    {
+        "id": "sd_VIOAkkukG9mDLqTU",
+        "type": "update",
+        "z": "SSD_SERVICE_ID_sd_mnYUKYAktKvs8A8P",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_6fii80bkk",
+        "entityId": "_EN_lfgkiu8oko",
+        "_UI_entityName": "preauth_requests",
+        "dbConfigId": "sd_dm4nlxZgQKbuz5SV",
+        "operationType": "updateByID",
+        "filterBy": "",
+        "updateObject": "bh.local.updatePayload",
+        "resultMapping": "bh.local.tableresult",
+        "functionName": "sd_VIOAkkukG9mDLqTU",
+        "category": "Data Model",
+        "x": 540,
+        "y": 1260,
+        "wires": [
+            [
+                "sd_wDUYBQz6u2X0ZkyC"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "filterBy": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            },
+            "updateObject": {
+                "type": "bh.local",
+                "value": "updatePayload",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "tableresult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true
+        },
         "generateNext": false,
         "serviceName": "preauthservice",
         "generated": true

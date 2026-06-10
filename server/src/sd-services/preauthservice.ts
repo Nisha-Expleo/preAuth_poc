@@ -84,38 +84,6 @@ export class preauthservice {
   private mountAllPaths() {
     log.debug('mounting all paths for service :: preauthservice');
 
-    this.app['get'](
-      `${this.serviceBasePath}/user/:id`,
-      cookieParser(),
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'pre',
-        this.generatedMiddlewares
-      ),
-
-      async (req, res, next) => {
-        let bh: any = {};
-        try {
-          bh = this.sdService.__constructDefault(
-            { local: {}, input: {} },
-            req,
-            res,
-            next
-          );
-          let parentSpanInst = null;
-          bh = await this.sd_ZuIIJtj8P9ZeaY6w(bh, parentSpanInst);
-          //appendnew_next_sd_j9bq4c7s0RAMYr5Y
-        } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_j9bq4c7s0RAMYr5Y');
-        }
-      },
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'post',
-        this.generatedMiddlewares
-      )
-    );
-
     this.app['post'](
       `${this.serviceBasePath}/procedureCatalog`,
       cookieParser(),
@@ -212,40 +180,8 @@ export class preauthservice {
       )
     );
 
-    this.app['get'](
-      `${this.serviceBasePath}/preauth/:id`,
-      cookieParser(),
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'pre',
-        this.generatedMiddlewares
-      ),
-
-      async (req, res, next) => {
-        let bh: any = {};
-        try {
-          bh = this.sdService.__constructDefault(
-            { local: {}, input: {} },
-            req,
-            res,
-            next
-          );
-          let parentSpanInst = null;
-          bh = await this.sd_THKjYSwQGB82nHig(bh, parentSpanInst);
-          //appendnew_next_sd_BnzhOztGNiGWAQjT
-        } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_BnzhOztGNiGWAQjT');
-        }
-      },
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'post',
-        this.generatedMiddlewares
-      )
-    );
-
     this.app['post'](
-      `${this.serviceBasePath}/preauth/:id/mo-action`,
+      `${this.serviceBasePath}/preauth/mo-action`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -277,39 +213,7 @@ export class preauthservice {
     );
 
     this.app['post'](
-      `${this.serviceBasePath}/estimatedPayableWorkflow`,
-      cookieParser(),
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'pre',
-        this.generatedMiddlewares
-      ),
-
-      async (req, res, next) => {
-        let bh: any = {};
-        try {
-          bh = this.sdService.__constructDefault(
-            { local: {}, input: {} },
-            req,
-            res,
-            next
-          );
-          let parentSpanInst = null;
-          bh = await this.sd_QiakUixTiKg1F25o(bh, parentSpanInst);
-          //appendnew_next_sd_L4lYLny3qAgBFZ94
-        } catch (e) {
-          return await this.errorHandler(bh, e, 'sd_L4lYLny3qAgBFZ94');
-        }
-      },
-      this.sdService.getMiddlesWaresBySequenceId(
-        null,
-        'post',
-        this.generatedMiddlewares
-      )
-    );
-
-    this.app['post'](
-      `${this.serviceBasePath}/preauth/:id/authorizer-action`,
+      `${this.serviceBasePath}/preauth/authorizer-action`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -403,79 +307,43 @@ export class preauthservice {
         this.generatedMiddlewares
       )
     );
+
+    this.app['post'](
+      `${this.serviceBasePath}/estimatedPayableWorkflow`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh: any = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          let parentSpanInst = null;
+          bh = await this.sd_QiakUixTiKg1F25o(bh, parentSpanInst);
+          //appendnew_next_sd_L4lYLny3qAgBFZ94
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_L4lYLny3qAgBFZ94');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
     //appendnew_flow_preauthservice_HttpIn
   }
   //   service flows_preauthservice
 
   //appendnew_flow_preauthservice_start
-
-  async sd_ZuIIJtj8P9ZeaY6w(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_ZuIIJtj8P9ZeaY6w',
-      parentSpanInst
-    );
-    try {
-      const dmUtilsInst = new DmUtils('sd_dm4nlxZgQKbuz5SV');
-      bh.local.result = await dmUtilsInst.find(
-        '_EN_hxjfhb8pbg',
-        { user_id: bh.input.params.id },
-        undefined,
-        undefined,
-        undefined
-      );
-
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_vzKpwUb5vGTHojZb(bh, parentSpanInst);
-      //appendnew_next_sd_ZuIIJtj8P9ZeaY6w
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_ZuIIJtj8P9ZeaY6w',
-        spanInst,
-        'sd_ZuIIJtj8P9ZeaY6w'
-      );
-    }
-  }
-
-  async sd_vzKpwUb5vGTHojZb(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_vzKpwUb5vGTHojZb',
-      parentSpanInst
-    );
-    try {
-      if (bh.local.result.length > 0) {
-        bh.local.statusCode = 200;
-      } else {
-        bh.local.statusCode = 404;
-      }
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_7CFXNolQYRDkDwTU(bh, parentSpanInst);
-      //appendnew_next_sd_vzKpwUb5vGTHojZb
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_vzKpwUb5vGTHojZb',
-        spanInst,
-        'sd_vzKpwUb5vGTHojZb'
-      );
-    }
-  }
-
-  async sd_7CFXNolQYRDkDwTU(bh, parentSpanInst) {
-    try {
-      bh.web.res
-        .status(bh.local.statusCode)
-        .send(bh.local.result.payload.records);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_7CFXNolQYRDkDwTU');
-    }
-  }
 
   async sd_VDX1YTZ6IrVXB8z9(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
@@ -618,7 +486,7 @@ export class preauthservice {
           'Content-Type': 'application/json',
         },
         followRedirects: true,
-        cookies: {},
+        cookies: undefined,
         authType: undefined,
         body: bh.local.payload,
         paytoqs: false,
@@ -783,114 +651,6 @@ export class preauthservice {
     }
   }
 
-  async sd_THKjYSwQGB82nHig(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_THKjYSwQGB82nHig',
-      parentSpanInst
-    );
-    try {
-      const dmUtilsInst = new DmUtils('sd_dm4nlxZgQKbuz5SV');
-      bh.local.result = await dmUtilsInst.find(
-        '_EN_lfgkiu8oko',
-        { preauth_id: bh.input.params.id },
-        undefined,
-        undefined,
-        undefined
-      );
-
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_h4wYJaPhnwn2nDUq(bh, parentSpanInst);
-      //appendnew_next_sd_THKjYSwQGB82nHig
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_THKjYSwQGB82nHig',
-        spanInst,
-        'sd_THKjYSwQGB82nHig'
-      );
-    }
-  }
-
-  async sd_h4wYJaPhnwn2nDUq(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_h4wYJaPhnwn2nDUq',
-      parentSpanInst
-    );
-    try {
-      bh.local.check = true;
-
-      console.log('Get PreAuth By ID Service Called');
-
-      // Safe validation
-      if (
-        !bh.local.getPreAuthResult ||
-        !bh.local.getPreAuthResult[0] ||
-        !bh.local.getPreAuthResult[0].local ||
-        !bh.local.getPreAuthResult[0].local.result ||
-        !bh.local.getPreAuthResult[0].local.result.payload ||
-        bh.local.getPreAuthResult[0].local.result.payload.length == 0
-      ) {
-        bh.local.check = false;
-
-        bh.local.response = {
-          message: 'No PreAuth Request Found',
-          status: 404,
-        };
-
-        console.log('No PreAuth Found with this ID');
-
-        return;
-      }
-
-      // If found prepare response
-      if (bh.local.check) {
-        const preauth = bh.local.getPreAuthResult[0].local.result.payload[0];
-
-        bh.local.response = {
-          preauth_id: preauth.preauth_id,
-
-          requested_amount: preauth.requested_amount,
-
-          estimated_payable: preauth.estimated_payable,
-
-          final_payable: preauth.final_payable,
-
-          mo_remarks: preauth.mo_remarks,
-
-          authorizer_remarks: preauth.authorizer_remarks,
-
-          status: preauth.status,
-        };
-
-        console.log('PreAuth Found Successfully', bh.local.response);
-      }
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_iviQW8iiybtTV24K(bh, parentSpanInst);
-      //appendnew_next_sd_h4wYJaPhnwn2nDUq
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_h4wYJaPhnwn2nDUq',
-        spanInst,
-        'sd_h4wYJaPhnwn2nDUq'
-      );
-    }
-  }
-
-  async sd_iviQW8iiybtTV24K(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(200).send(bh.local.result);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_iviQW8iiybtTV24K');
-    }
-  }
-
   async sd_DhFqLeMASoCRiKXF(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
       'sd_DhFqLeMASoCRiKXF',
@@ -899,7 +659,7 @@ export class preauthservice {
     try {
       const body = bh.input.body || {};
 
-      const preauthId = bh.input.params.id;
+      const preauthId = body.id;
 
       console.log('MO Action Request:', body);
 
@@ -1022,211 +782,6 @@ export class preauthservice {
     }
   }
 
-  async sd_QiakUixTiKg1F25o(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_QiakUixTiKg1F25o',
-      parentSpanInst
-    );
-    try {
-      const body = bh.input.body || {};
-
-      console.log('Runtime Request:', body);
-
-      // Validate input object
-      if (!body.inputObj) {
-        bh.local.response = {
-          message: 'inputObj is required',
-        };
-
-        return;
-      }
-
-      // Hardcoded payload
-      bh.local.payload = {
-        workflowId: 'df8503db-4d70-4754-b645-49939fe38c00',
-
-        version: '1.0.0',
-
-        inputObj: {
-          preauth_id: body.inputObj.preauth_id,
-
-          sumInsured: body.inputObj.sumInsured,
-
-          RoomCategory: body.inputObj.RoomCategory,
-
-          ProcedureCode: body.inputObj.ProcedureCode,
-
-          requestedAmount: body.inputObj.requestedAmount,
-
-          lengthOfStayDays: body.inputObj.lengthOfStayDays,
-
-          PatientAge: body.inputObj.PatientAge,
-        },
-      };
-
-      console.log('Prepared Payload:', bh.local.payload);
-
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_33o1v1r4aAbBT3EH(bh, parentSpanInst);
-      //appendnew_next_sd_QiakUixTiKg1F25o
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_QiakUixTiKg1F25o',
-        spanInst,
-        'sd_QiakUixTiKg1F25o'
-      );
-    }
-  }
-
-  async sd_33o1v1r4aAbBT3EH(bh, parentSpanInst) {
-    try {
-      let requestOptions: any = {
-        url: 'https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync',
-        timeout: 30000,
-        method: 'post',
-        headers: {
-          accept: 'application/json',
-          'Content-Type': 'application/json',
-          token:
-            'dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762',
-        },
-        followRedirects: true,
-        cookies: {},
-        authType: undefined,
-        body: bh.local.payload,
-        paytoqs: false,
-        proxyConfig: undefined,
-        tlsConfig: undefined,
-        ret: 'json',
-        params: {},
-        username: undefined,
-        password: undefined,
-        token: undefined,
-        useQuerystring: false,
-      };
-      requestOptions.rejectUnauthorized = false;
-      requestOptions.tlsConfig = undefined;
-      requestOptions.proxyConfig = undefined;
-      let responseMsg: any = await this.sdService.httpRequest(
-        requestOptions.url,
-        requestOptions.timeout,
-        requestOptions.method,
-        requestOptions.headers,
-        requestOptions.followRedirects,
-        requestOptions.cookies,
-        requestOptions.authType,
-        requestOptions.body,
-        requestOptions.paytoqs,
-        requestOptions.proxyConfig,
-        requestOptions.tlsConfig,
-        requestOptions.ret,
-        requestOptions.params,
-        requestOptions.rejectUnauthorized,
-        requestOptions.username,
-        requestOptions.password,
-        requestOptions.token
-      );
-
-      bh.local.result = responseMsg;
-      bh = await this.sd_fghQIYyafpll1MfN(bh, parentSpanInst);
-      //appendnew_next_sd_33o1v1r4aAbBT3EH
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_33o1v1r4aAbBT3EH');
-    }
-  }
-
-  async sd_fghQIYyafpll1MfN(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_fghQIYyafpll1MfN',
-      parentSpanInst
-    );
-    try {
-      console.log('Runtime API Response:', bh.local.result);
-
-      // Extract preauth id
-      const preauthId = bh.input.body.inputObj.preauth_id;
-
-      // Extract estimated payable
-      const estimatedPayable = bh.local.result.payload.result.estimatedPayable;
-
-      // Map Route → Status
-      const route = bh.local.result.payload.result.Route;
-      let status = 'SUBMITTED';
-
-      if (route === 'AUTO_APPROVE') {
-        status = 'APPROVED';
-      } else if (route === 'MO_REVIEW') {
-        status = 'MO_REVIEW';
-      } else if (route === 'MO_REVIEW_AUTHORIZER') {
-        status = 'AUTHORIZER';
-      }
-
-      // Prepare UPDATE payload
-      bh.local.updatePayload = {
-        preauth_id: preauthId,
-
-        estimated_payable: estimatedPayable,
-
-        status: status,
-      };
-
-      console.log('Prepared Update Payload:', bh.local.updatePayload);
-      this.tracerService.sendData(spanInst, bh);
-      bh = await this.sd_VIOAkkukG9mDLqTU(bh, parentSpanInst);
-      //appendnew_next_sd_fghQIYyafpll1MfN
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_fghQIYyafpll1MfN',
-        spanInst,
-        'sd_fghQIYyafpll1MfN'
-      );
-    }
-  }
-
-  async sd_VIOAkkukG9mDLqTU(bh, parentSpanInst) {
-    const spanInst = this.tracerService.createSpan(
-      'sd_VIOAkkukG9mDLqTU',
-      parentSpanInst
-    );
-    try {
-      const dmUtilsInst = new DmUtils('sd_dm4nlxZgQKbuz5SV');
-      bh.local.tableresult = await dmUtilsInst.updateById(
-        '_EN_lfgkiu8oko',
-        bh.local.updatePayload
-      );
-
-      this.tracerService.sendData(spanInst, bh);
-      await this.sd_wDUYBQz6u2X0ZkyC(bh, parentSpanInst);
-      //appendnew_next_sd_VIOAkkukG9mDLqTU
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(
-        bh,
-        e,
-        'sd_VIOAkkukG9mDLqTU',
-        spanInst,
-        'sd_VIOAkkukG9mDLqTU'
-      );
-    }
-  }
-
-  async sd_wDUYBQz6u2X0ZkyC(bh, parentSpanInst) {
-    try {
-      bh.web.res.status(200).send(bh.local.tableresult);
-
-      return bh;
-    } catch (e) {
-      return await this.errorHandler(bh, e, 'sd_wDUYBQz6u2X0ZkyC');
-    }
-  }
-
   async sd_jNs49iM7nLgtzPLM(bh, parentSpanInst) {
     const spanInst = this.tracerService.createSpan(
       'sd_jNs49iM7nLgtzPLM',
@@ -1235,7 +790,7 @@ export class preauthservice {
     try {
       const body = bh.input.body || {};
 
-      const preauthId = bh.input.params.id;
+      const preauthId = body.id;
 
       // Validation
       if (!body.action) {
@@ -1774,6 +1329,211 @@ export class preauthservice {
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_48Qnc9trLiAKUUxc');
+    }
+  }
+
+  async sd_QiakUixTiKg1F25o(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_QiakUixTiKg1F25o',
+      parentSpanInst
+    );
+    try {
+      const body = bh.input.body || {};
+
+      console.log('Runtime Request:', body);
+
+      // Validate input object
+      if (!body.inputObj) {
+        bh.local.response = {
+          message: 'inputObj is required',
+        };
+
+        return;
+      }
+
+      // Hardcoded payload
+      bh.local.payload = {
+        workflowId: 'df8503db-4d70-4754-b645-49939fe38c00',
+
+        version: '1.0.0',
+
+        inputObj: {
+          preauth_id: body.inputObj.preauth_id,
+
+          sumInsured: body.inputObj.sumInsured,
+
+          RoomCategory: body.inputObj.RoomCategory,
+
+          ProcedureCode: body.inputObj.ProcedureCode,
+
+          requestedAmount: body.inputObj.requestedAmount,
+
+          lengthOfStayDays: body.inputObj.lengthOfStayDays,
+
+          PatientAge: body.inputObj.PatientAge,
+        },
+      };
+
+      console.log('Prepared Payload:', bh.local.payload);
+
+      this.tracerService.sendData(spanInst, bh);
+      bh = await this.sd_33o1v1r4aAbBT3EH(bh, parentSpanInst);
+      //appendnew_next_sd_QiakUixTiKg1F25o
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_QiakUixTiKg1F25o',
+        spanInst,
+        'sd_QiakUixTiKg1F25o'
+      );
+    }
+  }
+
+  async sd_33o1v1r4aAbBT3EH(bh, parentSpanInst) {
+    try {
+      let requestOptions: any = {
+        url: 'https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync',
+        timeout: 30000,
+        method: 'post',
+        headers: {
+          accept: 'application/json',
+          'Content-Type': 'application/json',
+          token:
+            'dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762',
+        },
+        followRedirects: true,
+        cookies: undefined,
+        authType: undefined,
+        body: bh.local.payload,
+        paytoqs: false,
+        proxyConfig: undefined,
+        tlsConfig: undefined,
+        ret: 'json',
+        params: {},
+        username: undefined,
+        password: undefined,
+        token: undefined,
+        useQuerystring: false,
+      };
+      requestOptions.rejectUnauthorized = false;
+      requestOptions.tlsConfig = undefined;
+      requestOptions.proxyConfig = undefined;
+      let responseMsg: any = await this.sdService.httpRequest(
+        requestOptions.url,
+        requestOptions.timeout,
+        requestOptions.method,
+        requestOptions.headers,
+        requestOptions.followRedirects,
+        requestOptions.cookies,
+        requestOptions.authType,
+        requestOptions.body,
+        requestOptions.paytoqs,
+        requestOptions.proxyConfig,
+        requestOptions.tlsConfig,
+        requestOptions.ret,
+        requestOptions.params,
+        requestOptions.rejectUnauthorized,
+        requestOptions.username,
+        requestOptions.password,
+        requestOptions.token
+      );
+
+      bh.local.result = responseMsg;
+      bh = await this.sd_fghQIYyafpll1MfN(bh, parentSpanInst);
+      //appendnew_next_sd_33o1v1r4aAbBT3EH
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_33o1v1r4aAbBT3EH');
+    }
+  }
+
+  async sd_fghQIYyafpll1MfN(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_fghQIYyafpll1MfN',
+      parentSpanInst
+    );
+    try {
+      console.log('Runtime API Response:', bh.local.result);
+
+      // Extract preauth id
+      const preauthId = bh.input.body.inputObj.preauth_id;
+
+      // Extract estimated payable
+      const estimatedPayable = bh.local.result.payload.result.estimatedPayable;
+
+      // Map Route → Status
+      const route = bh.local.result.payload.result.Route;
+      let status = 'SUBMITTED';
+
+      if (route === 'AUTO_APPROVE') {
+        status = 'APPROVED';
+      } else if (route === 'MO_REVIEW') {
+        status = 'MO_REVIEW';
+      } else if (route === 'MO_REVIEW+AUTHORIZER') {
+        status = 'AUTHORIZER';
+      }
+
+      // Prepare UPDATE payload
+      bh.local.updatePayload = {
+        preauth_id: preauthId,
+
+        estimated_payable: estimatedPayable,
+
+        status: status,
+      };
+
+      console.log('Prepared Update Payload:', bh.local.updatePayload);
+      this.tracerService.sendData(spanInst, bh);
+      bh = await this.sd_VIOAkkukG9mDLqTU(bh, parentSpanInst);
+      //appendnew_next_sd_fghQIYyafpll1MfN
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_fghQIYyafpll1MfN',
+        spanInst,
+        'sd_fghQIYyafpll1MfN'
+      );
+    }
+  }
+
+  async sd_VIOAkkukG9mDLqTU(bh, parentSpanInst) {
+    const spanInst = this.tracerService.createSpan(
+      'sd_VIOAkkukG9mDLqTU',
+      parentSpanInst
+    );
+    try {
+      const dmUtilsInst = new DmUtils('sd_dm4nlxZgQKbuz5SV');
+      bh.local.tableresult = await dmUtilsInst.updateById(
+        '_EN_lfgkiu8oko',
+        bh.local.updatePayload
+      );
+
+      this.tracerService.sendData(spanInst, bh);
+      await this.sd_wDUYBQz6u2X0ZkyC(bh, parentSpanInst);
+      //appendnew_next_sd_VIOAkkukG9mDLqTU
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(
+        bh,
+        e,
+        'sd_VIOAkkukG9mDLqTU',
+        spanInst,
+        'sd_VIOAkkukG9mDLqTU'
+      );
+    }
+  }
+
+  async sd_wDUYBQz6u2X0ZkyC(bh, parentSpanInst) {
+    try {
+      bh.web.res.status(200).send(bh.local.tableresult);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_wDUYBQz6u2X0ZkyC');
     }
   }
 

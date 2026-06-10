@@ -1,40 +1,4 @@
 {
-    "/user/:id": {
-        "get": {
-            "summary": "",
-            "description": "",
-            "consumes": [
-                "application/json"
-            ],
-            "produces": [],
-            "parameters": [
-                {
-                    "in": "path",
-                    "name": "user_id ",
-                    "description": "user_id ",
-                    "required": true
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "User detail"
-                },
-                "404": {
-                    "description": "Book not found"
-                },
-                "any": {
-                    "schema": {
-                        "type": "object",
-                        "$ref": "#/definitions/users ~ users"
-                    },
-                    "description": ""
-                }
-            },
-            "tags": [
-                "preauthservice"
-            ]
-        }
-    },
     "/procedureCatalog": {
         "post": {
             "summary": "",
@@ -97,39 +61,7 @@
             ]
         }
     },
-    "/preauth/:id": {
-        "get": {
-            "summary": "",
-            "description": "",
-            "consumes": [
-                "application/json"
-            ],
-            "produces": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "in": "path",
-                    "name": "id",
-                    "description": "id",
-                    "required": true
-                }
-            ],
-            "responses": {
-                "200": {
-                    "schema": {
-                        "type": "object",
-                        "$ref": "#/definitions/users ~ preauth_requests"
-                    },
-                    "description": ""
-                }
-            },
-            "tags": [
-                "preauthservice"
-            ]
-        }
-    },
-    "/preauth/:id/mo-action": {
+    "/preauth/mo-action": {
         "post": {
             "summary": "",
             "description": "",
@@ -139,7 +71,7 @@
             "produces": [],
             "parameters": [
                 {
-                    "in": "path",
+                    "in": "body",
                     "name": "id",
                     "description": "preAuthId",
                     "required": true
@@ -155,6 +87,32 @@
                     "name": "remark",
                     "description": "remark",
                     "required": false
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/reviewDecision": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "PatientAge",
+                    "description": "PatientAge",
+                    "required": true
+                },
+                {
+                    "in": "body",
+                    "name": "RequestedAmount",
+                    "description": "RequestedAmount",
+                    "required": true
                 }
             ],
             "responses": {},
@@ -219,33 +177,7 @@
             ]
         }
     },
-    "/reviewDecision": {
-        "post": {
-            "summary": "",
-            "description": "",
-            "consumes": [],
-            "produces": [],
-            "parameters": [
-                {
-                    "in": "body",
-                    "name": "PatientAge",
-                    "description": "PatientAge",
-                    "required": true
-                },
-                {
-                    "in": "body",
-                    "name": "RequestedAmount",
-                    "description": "RequestedAmount",
-                    "required": true
-                }
-            ],
-            "responses": {},
-            "tags": [
-                "preauthservice"
-            ]
-        }
-    },
-    "/preauth/:id/authorizer-action": {
+    "/preauth/authorizer-action": {
         "post": {
             "summary": "",
             "description": "",
@@ -255,7 +187,7 @@
             "produces": [],
             "parameters": [
                 {
-                    "in": "path",
+                    "in": "body",
                     "name": "id",
                     "description": "preAuthId",
                     "required": true

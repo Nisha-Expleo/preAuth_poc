@@ -149,7 +149,7 @@ export class preauthservice {
     );
 
     this.app['post'](
-      `${this.serviceBasePath}/preAuth/create`,
+      `${this.serviceBasePath}/preAuth/createe`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -692,6 +692,19 @@ export class preauthservice {
 
       // APPROVE FLOW
       if (body.action === 'APPROVE') {
+        bh.local.moActionData.status = 'APPROVE';
+
+        bh.local.response = {
+          message: 'MO Approved Successfully',
+
+          preauth_id: preauthId,
+
+          status: 'AUTHORIZER',
+        };
+      }
+
+      //AUTHORIZER Flow
+      if (body.action === 'AUTHORIZER') {
         bh.local.moActionData.status = 'AUTHORIZER';
 
         bh.local.response = {
@@ -1123,7 +1136,7 @@ export class preauthservice {
     );
     try {
       bh.local.alphaPayload = {
-        caseType: 'Health-PreAuth-POC-Nisha',
+        caseType: 'PreAuthPOC',
         caseData: {
           preauth_id: bh.local.preauthData.preauthId,
           policy_no: bh.local.preauthData.policyNumber,
@@ -1173,7 +1186,7 @@ export class preauthservice {
         method: 'post',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         followRedirects: true,
-        cookies: {},
+        cookies: undefined,
         authType: undefined,
         body: bh.local.tokenpayload,
         paytoqs: false,
@@ -1251,8 +1264,8 @@ export class preauthservice {
           'Content-Type': 'application/json',
         },
         followRedirects: true,
-        cookies: {},
-        authType: undefined,
+        cookies: undefined,
+        authType: 'bearer',
         body: bh.local.alphaPayload,
         paytoqs: false,
         proxyConfig: undefined,
@@ -1261,7 +1274,7 @@ export class preauthservice {
         params: {},
         username: undefined,
         password: undefined,
-        token: undefined,
+        token: bh.local.authHeader,
         useQuerystring: false,
       };
       requestOptions.rejectUnauthorized = false;
@@ -1305,6 +1318,7 @@ export class preauthservice {
       bh.local.allresponse = {
         ticket: bh.local.response,
         'case-creation': bh.local.alpharesponse,
+        result: bh.local.result,
         //  "auto-assign":bh.local.result
       };
       this.tracerService.sendData(spanInst, bh);
@@ -1478,7 +1492,7 @@ export class preauthservice {
       } else if (route === 'MO_REVIEW') {
         status = 'MO_REVIEW';
       } else if (route === 'MO_REVIEW+AUTHORIZER') {
-        status = 'AUTHORIZER';
+        status = '';
       }
 
       // Prepare UPDATE payload

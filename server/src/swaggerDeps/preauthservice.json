@@ -39,7 +39,7 @@
             ]
         }
     },
-    "/preAuth/create": {
+    "/preAuth/createe": {
         "post": {
             "summary": "",
             "description": "",
@@ -55,7 +55,15 @@
                     "required": false
                 }
             ],
-            "responses": {},
+            "responses": {
+                "200": {
+                    "schema": {
+                        "type": "object",
+                        "$ref": "#/definitions/users ~ preauth_requests"
+                    },
+                    "description": ""
+                }
+            },
             "tags": [
                 "preauthservice"
             ]
@@ -113,6 +121,28 @@
                     "name": "RequestedAmount",
                     "description": "RequestedAmount",
                     "required": true
+                }
+            ],
+            "responses": {},
+            "tags": [
+                "preauthservice"
+            ]
+        }
+    },
+    "/preAuth/create": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "preAuth creation payload",
+                    "required": false
                 }
             ],
             "responses": {},

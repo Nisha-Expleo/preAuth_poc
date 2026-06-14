@@ -267,6 +267,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -342,6 +343,7 @@
         "nodeType": "flow",
         "name": "",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "\"https://reels-pt.neutrinos-apps.com/integration/api/records/filter/72b58c39-817f-4204-95dc-4f5eec8fd929/5cbbfa77-6882-4944-940b-de87a8edd576/d9e21782-e593-4469-8da4-63e1ac0ffb5d\"",
         "urlMappingObj": {
@@ -349,6 +351,7 @@
             "mapVarValue": "https://reels-pt.neutrinos-apps.com/integration/api/records/filter/72b58c39-817f-4204-95dc-4f5eec8fd929/5cbbfa77-6882-4944-940b-de87a8edd576/d9e21782-e593-4469-8da4-63e1ac0ffb5d"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.payload",
         "reqBodyObj": {
@@ -379,11 +382,16 @@
                 "defaultValue": "application/json"
             }
         ],
+        "headerMapping": "",
         "headerMappingObj": {},
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
+        "authType": "",
         "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -399,6 +407,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -495,6 +504,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -755,7 +765,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "const body = bh.input.body || {};\n\nconst preauthId = body.id;\n\nconsole.log(\n    \"MO Action Request:\",\n    body\n);\n\nconsole.log(\n    \"PreAuth ID:\",preauthId\n);\n\n\n// Validate action\nif (\n    !body.action\n) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\n// Validate remark\nif (\n    !body.remark\n) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Prepare update object\nbh.local.moActionData = {\n\n    preauth_id: preauthId,\n\n    mo_remarks: body.remark\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.moActionData.status = \"APPROVE\";\n\n    bh.local.response = {\n\n        message: \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"AUTHORIZER\"\n    };\n}\n\n//AUTHORIZER Flow\nif (\n    body.action === \"AUTHORIZER\"\n) {\n\n    bh.local.moActionData.status = \"AUTHORIZER\";\n\n    bh.local.response = {\n\n        message: \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"AUTHORIZER\"\n    };\n}\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.moActionData.status =\n        \"REJECTED\";\n\n    bh.local.response = {\n\n        message:\n            \"MO Rejected PreAuth\",\n\n        preauth_id: preauthId,\n\n        status: \"REJECTED\"\n    };\n}\n\n\nconsole.log(\n    \"Prepared MO Action Data:\",\n    bh.local.moActionData\n);\n\nconsole.log(\n    \"Updating PreAuth Request...\"\n);\n\n\n// Execute update query payload\nbh.local.updatePreAuthPayload = {\n\n    preauth_id:\n        bh.local.moActionData.preauth_id,\n\n    mo_remarks:\n        bh.local.moActionData.mo_remarks,\n\n    status:\n        bh.local.moActionData.status\n};\n \n\nconsole.log(\n    \"Update Payload:\",\n    bh.local.updatePreAuthPayload\n);",
+        "script": "const body = bh.input.body || {};\n\nconst preauthId = body.id;\n\nconsole.log(\n    \"MO Action Request:\",\n    body\n);\n\nconsole.log(\n    \"PreAuth ID:\",preauthId\n);\n\n\n// Validate action\nif (\n    !body.action\n) {\n\n    bh.local.response = {\n        message: \"Action is required\"\n    };\n\n    return;\n}\n\n\n// Validate remark\nif (\n    !body.remark\n) {\n\n    bh.local.response = {\n        message: \"Remark is required\"\n    };\n\n    return;\n}\n\n\n// Prepare update object\nbh.local.moActionData = {\n\n    preauth_id: preauthId,\n\n    mo_remarks: body.remark\n};\n\n\n// APPROVE FLOW\nif (\n    body.action === \"APPROVE\"\n) {\n\n    bh.local.moActionData.status = \"APPROVED\";\n\n    bh.local.response = {\n\n        message: \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"APPROVED\"\n    };\n}\n\n//AUTHORIZER Flow\nif (\n    body.action === \"AUTHORIZER\"\n) {\n\n    bh.local.moActionData.status = \"AUTHORIZER\";\n\n    bh.local.response = {\n\n        message: \"MO Approved Successfully\",\n\n        preauth_id: preauthId,\n\n        status: \"AUTHORIZER\"\n    };\n}\n\n// REJECT FLOW\nif (\n    body.action === \"REJECT\"\n) {\n\n    bh.local.moActionData.status =\n        \"REJECTED\";\n\n    bh.local.response = {\n\n        message:\n            \"MO Rejected PreAuth\",\n\n        preauth_id: preauthId,\n\n        status: \"REJECTED\"\n    };\n}\n\n\nconsole.log(\n    \"Prepared MO Action Data:\",\n    bh.local.moActionData\n);\n\nconsole.log(\n    \"Updating PreAuth Request...\"\n);\n\n\n// Execute update query payload\nbh.local.updatePreAuthPayload = {\n\n    preauth_id:\n        bh.local.moActionData.preauth_id,\n\n    mo_remarks:\n        bh.local.moActionData.mo_remarks,\n\n    status:\n        bh.local.moActionData.status\n};\n \n\nconsole.log(\n    \"Update Payload:\",\n    bh.local.updatePreAuthPayload\n);",
         "functionName": "sd_DhFqLeMASoCRiKXF",
         "category": "Function",
         "x": 165,
@@ -846,7 +856,6 @@
             "send": "bh.local.updatePreAuthPayload"
         },
         "dataModelIsArray": false,
-        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -1351,6 +1360,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -1472,7 +1482,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "Alpha payload ",
-        "script": "bh.local.alphaPayload = {\n    caseType: \"PreAuthPOC\",\n    caseData: {\n    preauth_id: bh.local.preauthData.preauthId,\n    policy_no: bh.local.preauthData.policyNumber,\n    patient_name: bh.local.preauthData.patientName,\n    patient_age: bh.local.preauthData.patientAge,\n    hospital_name: bh.local.preauthData.hospitalName,\n    diagnosis: bh.local.preauthData.diagnosis,\n    procedure_code: bh.local.preauthData.procedureCode,\n    room_category: bh.local.preauthData.roomCategory,\n    length_of_stay: bh.local.preauthData.lengthOfStay,\n    requested_amount: bh.local.preauthData.requestedAmount,\n    estimated_payable: null,\n    final_payable: null,\n    mo_remarks: null,\n    authorizer_remarks: null,\n    status: \"SUBMITTED\",\n    approval_number: null\n    }\n};\nbh.local.tokenpayload={\n    \"client_secret\":\"e28WZR6ZKyrYILTSKKClFEwNlYoGR2cvISwFCoIXP4S7DJgsaqhHRSNqpoWgYbcx_DUlrSkoA1zS5uFOzP-J9C\",\n    \"client_id\":\"0ddh_euTKkSA682Yy5HuC\",\n    \"grant_type\":\"client_credentials\"\n}\nconsole.log(\"Alpha payload:\", bh.local.alphaPayload);",
+        "script": "bh.local.alphaPayload = {\n    caseType: \"PreAuthPOC\",\n    caseData: {\n    preauth_id: bh.local.preauthData.preauth_id,\n    policy_no: bh.local.preauthData.policy_no,\n    patient_name: bh.local.preauthData.patient_name,\n    patient_age: bh.local.preauthData.patient_age,\n    hospital_name: bh.local.preauthData.hospital_name,\n    diagnosis: bh.local.preauthData.diagnosis,\n    procedure_code: bh.local.preauthData.procedure_code,\n    room_category: bh.local.preauthData.room_category,\n    length_of_stay: bh.local.preauthData.length_of_stay,\n    requested_amount: bh.local.preauthData.requested_amount,\n    estimated_payable: null,\n    final_payable: null,\n    mo_remarks: null,\n    authorizer_remarks: null,\n    status: \"SUBMITTED\",\n    approval_number: null\n    }\n};\nbh.local.tokenpayload={\n    \"client_secret\":\"e28WZR6ZKyrYILTSKKClFEwNlYoGR2cvISwFCoIXP4S7DJgsaqhHRSNqpoWgYbcx_DUlrSkoA1zS5uFOzP-J9C\",\n    \"client_id\":\"0ddh_euTKkSA682Yy5HuC\",\n    \"grant_type\":\"client_credentials\"\n}\nconsole.log(\"Alpha payload:\", bh.local.alphaPayload);",
         "functionName": "alphaPayload",
         "category": "Function",
         "x": 265,
@@ -1495,6 +1505,7 @@
         "nodeType": "flow",
         "name": "Token Api",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "\"https://ids-ctr-pt.neutrinos-apps.com/token\"",
         "urlMappingObj": {
@@ -1502,6 +1513,7 @@
             "mapVarValue": "https://ids-ctr-pt.neutrinos-apps.com/token"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.tokenpayload",
         "reqBodyObj": {
@@ -1522,11 +1534,16 @@
                 "defaultValue": "application/x-www-form-urlencoded"
             }
         ],
+        "headerMapping": "",
         "headerMappingObj": {},
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
+        "authType": "",
         "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -1542,6 +1559,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -1596,6 +1614,7 @@
         "nodeType": "flow",
         "name": "Case creation",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "\"https://alpha-pt.neutrinos-apps.com/caseservice/case/instance/create\"",
         "urlMappingObj": {
@@ -1603,6 +1622,7 @@
             "mapVarValue": "https://alpha-pt.neutrinos-apps.com/caseservice/case/instance/create"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.alphaPayload",
         "reqBodyObj": {
@@ -1628,11 +1648,16 @@
                 "defaultValue": "application/json"
             }
         ],
+        "headerMapping": "",
         "headerMappingObj": {},
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
         "authType": "bearer",
+        "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": {},
         "useAuthPassword": "",
@@ -1651,6 +1676,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -1723,6 +1749,7 @@
             "send": "bh.local.allresponse"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -1768,6 +1795,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -1843,6 +1871,7 @@
         "nodeType": "flow",
         "name": "",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "\"https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync\"",
         "urlMappingObj": {
@@ -1850,6 +1879,7 @@
             "mapVarValue": "https://reels-pt.neutrinos-apps.com/integration/api/runtime/sync"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.payload",
         "reqBodyObj": {
@@ -1880,11 +1910,16 @@
                 "defaultValue": "dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762"
             }
         ],
+        "headerMapping": "",
         "headerMappingObj": {},
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
+        "authType": "",
         "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -1900,6 +1935,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {

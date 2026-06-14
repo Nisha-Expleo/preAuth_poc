@@ -486,7 +486,7 @@ export class preauthservice {
           'Content-Type': 'application/json',
         },
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.payload,
         paytoqs: false,
@@ -692,14 +692,14 @@ export class preauthservice {
 
       // APPROVE FLOW
       if (body.action === 'APPROVE') {
-        bh.local.moActionData.status = 'APPROVE';
+        bh.local.moActionData.status = 'APPROVED';
 
         bh.local.response = {
           message: 'MO Approved Successfully',
 
           preauth_id: preauthId,
 
-          status: 'AUTHORIZER',
+          status: 'APPROVED',
         };
       }
 
@@ -1138,16 +1138,16 @@ export class preauthservice {
       bh.local.alphaPayload = {
         caseType: 'PreAuthPOC',
         caseData: {
-          preauth_id: bh.local.preauthData.preauthId,
-          policy_no: bh.local.preauthData.policyNumber,
-          patient_name: bh.local.preauthData.patientName,
-          patient_age: bh.local.preauthData.patientAge,
-          hospital_name: bh.local.preauthData.hospitalName,
+          preauth_id: bh.local.preauthData.preauth_id,
+          policy_no: bh.local.preauthData.policy_no,
+          patient_name: bh.local.preauthData.patient_name,
+          patient_age: bh.local.preauthData.patient_age,
+          hospital_name: bh.local.preauthData.hospital_name,
           diagnosis: bh.local.preauthData.diagnosis,
-          procedure_code: bh.local.preauthData.procedureCode,
-          room_category: bh.local.preauthData.roomCategory,
-          length_of_stay: bh.local.preauthData.lengthOfStay,
-          requested_amount: bh.local.preauthData.requestedAmount,
+          procedure_code: bh.local.preauthData.procedure_code,
+          room_category: bh.local.preauthData.room_category,
+          length_of_stay: bh.local.preauthData.length_of_stay,
+          requested_amount: bh.local.preauthData.requested_amount,
           estimated_payable: null,
           final_payable: null,
           mo_remarks: null,
@@ -1186,7 +1186,7 @@ export class preauthservice {
         method: 'post',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.tokenpayload,
         paytoqs: false,
@@ -1264,7 +1264,7 @@ export class preauthservice {
           'Content-Type': 'application/json',
         },
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: 'bearer',
         body: bh.local.alphaPayload,
         paytoqs: false,
@@ -1421,7 +1421,7 @@ export class preauthservice {
             'dff7ae6b-69ac-4be8-995c-a816ff8e0f88.9b057d1b88739e2c0a5c015686fa6b15e800f7c48c79eab906487bfd960d9762',
         },
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.payload,
         paytoqs: false,
